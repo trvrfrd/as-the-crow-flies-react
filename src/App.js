@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return <h1>butt</h1>;
   }
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-)
