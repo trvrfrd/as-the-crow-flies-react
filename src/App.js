@@ -11,7 +11,7 @@ export default class App extends Component {
   render() {
     return (
       <div
-        class="app--main"
+        className="app--main"
         style={{
           width: '100vw',
           height: '100vh'
