@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Typeahead from './Typeahead';
 import calculateDistance from './calculateDistance';
@@ -24,13 +24,8 @@ export default class App extends Component {
 
   render() {
     return (
-      <div
-        className="app--main"
-        style={{
-          width: '100vw',
-          height: '100vh'
-        }}
-      >
+      <Fragment>
+
         <h1>header</h1>
 
         <Typeahead
@@ -58,7 +53,8 @@ export default class App extends Component {
             : null
           }
         </output>
-      </div>
+
+      </Fragment>
     );
   }
 }
