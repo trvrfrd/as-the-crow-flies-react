@@ -14,11 +14,17 @@ export default class Input extends Component {
 
   render() {
     return (
-      <input
-        {...this.props}
-        value={this.state.value}
-        onChange={this.handleChange}
-      />
+      <fieldset>
+        <label htmlFor={this.props.name}>{this.props.name} :</label>
+        <br />
+        <input
+          id={this.props.name}
+          name={this.props.name}
+          placeholder={this.props.placeholder}
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+      </fieldset>
     )
   }
 }

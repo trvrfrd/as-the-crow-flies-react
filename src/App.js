@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 
-import Input from './Input';
+import Typeahead from './Typeahead';
 
 export default class App extends Component {
   state = {
     from: '',
-    to: ''
+    to: '',
+    airports: []
+  }
+
+  componentDidMount() {
+    fetch('https://trvrfrd.github.io/as-the-crow-flies/data/airports.json')
+      .then(res => res.json())
+      .then(json => this.setState({ airports: json }));
+  }
+
+  handleSelect = (direction, airport) => {
+    console.log(airport);
+    // const { iata, name, lat, lon } = airport;
   }
 
   render() {
@@ -18,15 +30,18 @@ export default class App extends Component {
         }}
       >
         <h1>header</h1>
-        <Input
+        <Typeahead
           name="from"
           placeholder="from"
-          onChange={value => this.setState({ from: value })}
+          source={this.state.airports}
+          onSelect={this.handleSelect.bind(this, 'from')}
         />
-        <Input
+
+        <Typeahead
           name="to"
           placeholder="to"
-          onChange={value => this.setState({ to: value })}
+          source={this.state.airports}
+          onSelect={this.handleSelect.bind(this, 'to')}
         />
         <output>results</output>
       </div>
