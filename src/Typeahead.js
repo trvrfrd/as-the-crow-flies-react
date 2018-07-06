@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import Input from './Input';
 
 export default class Typeahead extends Component {
   state = {
@@ -7,6 +6,8 @@ export default class Typeahead extends Component {
     showSuggestions: false,
     selection: null
   }
+
+  handleChange = e => this.handleQuery(e.target.value);
 
   handleQuery = query => {
     const showSuggestions = query.length > 0;
@@ -17,7 +18,8 @@ export default class Typeahead extends Component {
     this.setState(
       {
         showSuggestions: false,
-        selection: data
+        selection: data,
+        query: this.props.formatSuggestion(data)
       },
       () => this.props.onSelect(this.state.selection)
     );
@@ -25,9 +27,9 @@ export default class Typeahead extends Component {
 
   getQueryResults = () => {
     var regexp = new RegExp(this.state.query, 'i');
-    return this.props.source.filter(thing =>
-      Object.values(thing).some(attr => regexp.test(attr))
-    ).slice(0, 10);
+    return this.props.source.filter(data =>
+      Object.values(data).some(attr => regexp.test(attr))
+    ).slice(0, this.props.maxSuggestions || 10);
   }
 
   render() {
@@ -35,18 +37,24 @@ export default class Typeahead extends Component {
 
     return (
       <Fragment>
-        <Input
-          name={name}
-          placeholder={placeholder}
-          onChange={this.handleQuery}
-        />
+        <fieldset>
+          <label htmlFor={name}>{name}: </label>
+          <br />
+          <input
+            id={name}
+            name={name}
+            placeholder={placeholder}
+            value={this.state.query}
+            onChange={this.handleChange}
+          />
+        </fieldset>
         {
           this.state.showSuggestions
             ?
             <div>
-              {this.getQueryResults().map((r, idx) =>
-                <div key={idx} onClick={() => this.handleSelect(r)}>
-                  {JSON.stringify(r)}
+              {this.getQueryResults().map((data, idx) =>
+                <div key={idx} onClick={() => this.handleSelect(data)}>
+                  {this.props.formatSuggestion(data)}
                 </div>
               )}
             </div>

@@ -20,6 +20,8 @@ export default class App extends Component {
     // const { iata, name, lat, lon } = airport;
   }
 
+  formatAirport = a => `(${a.iata}) ${a.name} - ${a.city}, ${a.state}`;
+
   render() {
     return (
       <div
@@ -30,19 +32,25 @@ export default class App extends Component {
         }}
       >
         <h1>header</h1>
+
         <Typeahead
           name="from"
-          placeholder="from"
+          placeholder="IATA code, airport name, city, or state"
           source={this.state.airports}
+          maxSuggestions={10}
+          formatSuggestion={this.formatAirport}
           onSelect={this.handleSelect.bind(this, 'from')}
         />
 
         <Typeahead
           name="to"
-          placeholder="to"
+          placeholder="IATA code, airport name, city, or state"
           source={this.state.airports}
+          maxSuggestions={10}
+          formatSuggestion={this.formatAirport}
           onSelect={this.handleSelect.bind(this, 'to')}
         />
+
         <output>results</output>
       </div>
     );
