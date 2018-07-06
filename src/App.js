@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
 import Typeahead from './Typeahead';
+import calculateDistance from './calculateDistance';
 
 export default class App extends Component {
   state = {
-    from: '',
-    to: '',
+    from: null,
+    to: null,
     airports: []
   }
 
@@ -15,9 +16,8 @@ export default class App extends Component {
       .then(json => this.setState({ airports: json }));
   }
 
-  handleSelect = (direction, airport) => {
-    console.log(airport);
-    // const { iata, name, lat, lon } = airport;
+  handleSelect = (endpoint, airport) => {
+    this.setState({ [endpoint]: airport });
   }
 
   formatAirport = a => `(${a.iata}) ${a.name} - ${a.city}, ${a.state}`;
@@ -51,7 +51,13 @@ export default class App extends Component {
           onSelect={this.handleSelect.bind(this, 'to')}
         />
 
-        <output>results</output>
+        <output>
+          {
+            this.state.from && this.state.to
+            ? calculateDistance(this.state.from, this.state.to)
+            : null
+          }
+        </output>
       </div>
     );
   }
