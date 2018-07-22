@@ -11,7 +11,14 @@ export default class Typeahead extends Component {
 
   handleQuery = query => {
     const showSuggestions = query.length > 0;
-    this.setState({ query, showSuggestions });
+    this.setState(
+      {
+        query,
+        showSuggestions,
+        selection: null
+      },
+      () => this.props.onSelect(this.state.selection)
+    );
   }
 
   handleSelect = data => {
