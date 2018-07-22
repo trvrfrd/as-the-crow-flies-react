@@ -28,23 +28,25 @@ export default class App extends Component {
 
         <h1>As the Crow Flies</h1>
 
-        <Typeahead
-          name="from"
-          placeholder="IATA code, airport name, city, or state"
-          source={this.state.airports}
-          maxSuggestions={10}
-          formatSuggestion={this.formatAirport}
-          onSelect={this.handleSelect.bind(this, 'from')}
-        />
+        <div className="typeaheads">
+          <Typeahead
+            name="from"
+            placeholder="IATA code, airport name, city, or state"
+            source={this.state.airports}
+            maxSuggestions={10}
+            formatSuggestion={this.formatAirport}
+            onSelect={this.handleSelect.bind(this, 'from')}
+          />
 
-        <Typeahead
-          name="to"
-          placeholder="IATA code, airport name, city, or state"
-          source={this.state.airports}
-          maxSuggestions={10}
-          formatSuggestion={this.formatAirport}
-          onSelect={this.handleSelect.bind(this, 'to')}
-        />
+          <Typeahead
+            name="to"
+            placeholder="IATA code, airport name, city, or state"
+            source={this.state.airports}
+            maxSuggestions={10}
+            formatSuggestion={this.formatAirport}
+            onSelect={this.handleSelect.bind(this, 'to')}
+          />
+        </div>
 
         {
           this.state.from && this.state.to

@@ -42,8 +42,9 @@
     }
 
     .typeahead input {
-      width: 100%;
       height: 2.2em;
+      width: 100%;
+      text-align: center;
     }
 
     .typeahead .suggestions {
@@ -67,6 +68,19 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+
+    @media(min-width: 600px) {
+      .typeaheads {
+        display: flex;
+        justify-content: center;
+      }
+
+      .typeahead {
+        flex-grow: 1;
+        max-width: 600px;
+        margin: 10px;
+      }
     }
   </style>
 </head>
