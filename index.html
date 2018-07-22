@@ -12,9 +12,61 @@
       box-sizing: border-box;
     }
 
+    body {
+      font-size: 16px;
+      font-family: sans-serif;
+    }
+
     #app {
       width: 100vw;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .typeahead .suggestions {
+      background-color: white;
+      font-size: 0.8em;
+    }
+
+    .typeahead fieldset {
+      margin-top: 10px;
+      border: none;
+    }
+
+    .typeahead input {
+      width: 100%;
+      height: 2.2em;
+    }
+
+    .typeahead .suggestions {
+      position: absolute;
+      border: 1px solid black;
+      border-top: none;
+    }
+
+    .typeahead .suggestion {
+      border-bottom: 1px dashed black;
+      padding: 5px;
+    }
+
+    .typeahead .suggestion:last-child {
+      border-bottom: none;
+    }
+
+    .itinerary {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   </style>
 </head>

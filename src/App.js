@@ -26,7 +26,7 @@ export default class App extends Component {
     return (
       <Fragment>
 
-        <h1>header</h1>
+        <h1>As the Crow Flies</h1>
 
         <Typeahead
           name="from"
@@ -46,15 +46,27 @@ export default class App extends Component {
           onSelect={this.handleSelect.bind(this, 'to')}
         />
 
-        <output>
-          {
-            this.state.from && this.state.to
-            ? calculateDistance(this.state.from, this.state.to)
-            : null
-          }
-        </output>
+        {
+          this.state.from && this.state.to
+          ? <Itinerary origin={this.state.from} destination={this.state.to} />
+          : null
+        }
 
       </Fragment>
     );
   }
+}
+
+const Itinerary = ({ origin, destination}) => {
+  const distance =  calculateDistance(origin, destination).toFixed(0);
+  return (
+    <div className="itinerary">
+      <p>
+        {`${origin.iata} ✈ ${destination.iata}`}
+      </p>
+      <p>
+        {`${distance} nautical miles`}
+      </p>
+    </div>
+  )
 }

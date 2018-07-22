@@ -43,7 +43,8 @@ export default class Typeahead extends Component {
     const { name, placeholder } = this.props;
 
     return (
-      <Fragment>
+      <div className="typeahead">
+
         <fieldset>
           <label htmlFor={name}>{name}: </label>
           <br />
@@ -55,19 +56,25 @@ export default class Typeahead extends Component {
             onChange={this.handleChange}
           />
         </fieldset>
+
         {
           this.state.showSuggestions
             ?
-            <div>
+            <div className="suggestions">
               {this.getQueryResults().map((data, idx) =>
-                <div key={idx} onClick={() => this.handleSelect(data)}>
+                <div
+                  className="suggestion"
+                  key={idx}
+                  onClick={() => this.handleSelect(data)}
+                >
                   {this.props.formatSuggestion(data)}
                 </div>
               )}
             </div>
             : null
         }
-      </Fragment>
+
+      </div>
     )
   }
 }
