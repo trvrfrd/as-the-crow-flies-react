@@ -20,6 +20,7 @@ body {
 }
 
 h1 {
+  font-size: calc(1.5em + 1vh + 1vw);
   height: 100px;
   display: flex;
   justify-content: center;
@@ -68,6 +69,7 @@ h1, label, .itinerary {
 }
 
 .itinerary {
+  font-size: calc(1em + 1vh + 1vw);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
