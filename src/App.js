@@ -4,8 +4,9 @@ import './App.css';
 
 import Typeahead from './Typeahead';
 import calculateDistance from './calculateDistance';
+import { hot } from 'react-hot-loader';
 
-export default class App extends Component {
+class App extends Component {
   state = {
     from: null,
     to: null,
@@ -74,3 +75,5 @@ const Itinerary = ({ origin, destination}) => {
     </div>
   )
 }
+
+export default hot(module)(App);
