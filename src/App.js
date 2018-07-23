@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
+import style from './App.css';
+
 import Typeahead from './Typeahead';
 import calculateDistance from './calculateDistance';
 
