@@ -6,8 +6,10 @@
 
 body {
   font-size: 16px;
-  font-family: sans-serif;
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-image: url('ross-parmly-25230-unsplash_2000_optim.jpg');
+  background-position: right;
+  background-size: cover;
 }
 
 #app {
@@ -24,9 +26,9 @@ h1 {
   align-items: center;
 }
 
-.typeahead .suggestions {
-  background-color: white;
-  font-size: 0.8em;
+h1, label, .itinerary {
+  color: white;
+  text-shadow: black 1px 1px 3px;
 }
 
 .typeahead fieldset {
@@ -36,14 +38,24 @@ h1 {
 
 .typeahead input {
   height: 2.2em;
+  opacity: 0.8;
   width: 100%;
   text-align: center;
 }
 
+.typeahead input:not(:focus) {
+  border: none;
+}
+
 .typeahead .suggestions {
+  background-color: white;
+  font-size: 0.8em;
   position: absolute;
   border: 1px solid black;
   border-top: none;
+  opacity: 0.8;
+  width: 100%;
+  z-index: 10;
 }
 
 .typeahead .suggestion {
@@ -73,5 +85,9 @@ h1 {
     flex-grow: 1;
     max-width: 600px;
     margin: 10px;
+  }
+
+  .typeahead .suggestions {
+    width: calc(50% - 20px);
   }
 }
