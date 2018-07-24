@@ -29,33 +29,37 @@ class App extends Component {
     return (
       <Fragment>
 
-        <h1>As the Crow Flies</h1>
+        <header>
+          <h1>As the Crow Flies</h1>
+        </header>
 
-        <div className="typeaheads">
-          <Typeahead
-            name="from"
-            placeholder="IATA code, airport name, city, or state"
-            source={this.state.airports}
-            maxSuggestions={10}
-            formatSuggestion={this.formatAirport}
-            onSelect={this.handleSelect.bind(this, 'from')}
-          />
+        <main>
+          <div className="typeaheads">
+            <Typeahead
+              name="from"
+              placeholder="IATA code, airport name, city, or state"
+              source={this.state.airports}
+              maxSuggestions={10}
+              formatSuggestion={this.formatAirport}
+              onSelect={this.handleSelect.bind(this, 'from')}
+            />
 
-          <Typeahead
-            name="to"
-            placeholder="IATA code, airport name, city, or state"
-            source={this.state.airports}
-            maxSuggestions={10}
-            formatSuggestion={this.formatAirport}
-            onSelect={this.handleSelect.bind(this, 'to')}
-          />
-        </div>
+            <Typeahead
+              name="to"
+              placeholder="IATA code, airport name, city, or state"
+              source={this.state.airports}
+              maxSuggestions={10}
+              formatSuggestion={this.formatAirport}
+              onSelect={this.handleSelect.bind(this, 'to')}
+            />
+          </div>
 
-        {
-          this.state.from && this.state.to
-          ? <Itinerary origin={this.state.from} destination={this.state.to} />
-          : null
-        }
+          {
+            this.state.from && this.state.to
+            ? <Itinerary origin={this.state.from} destination={this.state.to} />
+            : null
+          }
+        </main>
 
       </Fragment>
     );
