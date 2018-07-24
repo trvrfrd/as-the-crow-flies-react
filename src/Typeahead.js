@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 
+// escape dynamic RegExp so user input doesn't blow it up
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+function escapeRegExp(string) {
+  // $& means the whole matched string
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 export default class Typeahead extends Component {
   state = {
     query: '',
@@ -26,14 +33,14 @@ export default class Typeahead extends Component {
   }
 
   getQueryResults = () => {
-    const regexp = new RegExp(this.state.query, 'i');
+    const regexp = new RegExp(escapeRegExp(this.state.query), 'i');
     return this.props.source.filter(data =>
       Object.values(data).some(attr => regexp.test(attr))
     ).slice(0, this.props.maxSuggestions || 10);
   }
 
   highlightQuery = str => {
-    const regexp = new RegExp(this.state.query, 'ig');
+    const regexp = new RegExp(escapeRegExp(this.state.query), 'ig');
     const __html = str.replace(regexp, match => `<span class="highlight">${match}</span>`);
     return { __html };
   }
