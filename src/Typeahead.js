@@ -26,10 +26,16 @@ export default class Typeahead extends Component {
   }
 
   getQueryResults = () => {
-    var regexp = new RegExp(this.state.query, 'i');
+    const regexp = new RegExp(this.state.query, 'i');
     return this.props.source.filter(data =>
       Object.values(data).some(attr => regexp.test(attr))
     ).slice(0, this.props.maxSuggestions || 10);
+  }
+
+  highlightQuery = str => {
+    const regexp = new RegExp(this.state.query, 'i');
+    const __html = str.replace(regexp, match => `<span class="highlight">${match}</span>`);
+    return { __html };
   }
 
   render() {
@@ -59,9 +65,8 @@ export default class Typeahead extends Component {
                   className="suggestion"
                   key={idx}
                   onClick={() => this.handleSelect(data)}
-                >
-                  {this.props.formatSuggestion(data)}
-                </div>
+                  dangerouslySetInnerHTML={this.highlightQuery(this.props.formatSuggestion(data))}
+                />
               )}
             </div>
             : null

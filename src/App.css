@@ -68,6 +68,12 @@ h1, label, .itinerary {
   border-bottom: none;
 }
 
+.typeahead .suggestion .highlight {
+  background-color: #FFEB3B;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .itinerary {
   font-size: calc(1em + 1vh + 1vw);
   flex-grow: 1;
