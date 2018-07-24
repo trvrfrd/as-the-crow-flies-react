@@ -33,7 +33,7 @@ export default class Typeahead extends Component {
   }
 
   highlightQuery = str => {
-    const regexp = new RegExp(this.state.query, 'i');
+    const regexp = new RegExp(this.state.query, 'ig');
     const __html = str.replace(regexp, match => `<span class="highlight">${match}</span>`);
     return { __html };
   }
