@@ -48,7 +48,7 @@ h1, label, .itinerary {
   border: none;
 }
 
-.typeahead .suggestions {
+.suggestions {
   background-color: white;
   border: 1px solid black;
   border-top: none;
@@ -59,16 +59,16 @@ h1, label, .itinerary {
   z-index: 10;
 }
 
-.typeahead .suggestion {
+.suggestion {
   border-bottom: 1px dashed black;
   padding: 5px;
 }
 
-.typeahead .suggestion:last-child {
+.suggestion:last-child {
   border-bottom: none;
 }
 
-.typeahead .suggestion .highlight {
+.highlight {
   background-color: #FFEB3B;
   font-weight: bold;
   text-decoration: underline;
@@ -95,7 +95,7 @@ h1, label, .itinerary {
     max-width: 600px;
   }
 
-  .typeahead .suggestions {
+  .suggestions {
     max-width: 600px;
   }
 }
