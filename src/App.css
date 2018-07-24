@@ -1,30 +1,30 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-size: 16px;
-  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-image: url('ross-parmly-25230-unsplash_2000_optim.jpg');
   background-position: right;
   background-size: cover;
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
 #app {
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  width: 100vw;
 }
 
 h1 {
+  align-items: center;
+  display: flex;
   font-size: calc(1.5em + 1vh + 1vw);
   height: 100px;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 h1, label, .itinerary {
@@ -33,15 +33,15 @@ h1, label, .itinerary {
 }
 
 .typeahead fieldset {
-  margin-top: 10px;
   border: none;
+  margin-top: 10px;
 }
 
 .typeahead input {
   height: 2.2em;
   opacity: 0.8;
-  width: 100%;
   text-align: center;
+  width: 100%;
 }
 
 .typeahead input:not(:focus) {
@@ -50,11 +50,11 @@ h1, label, .itinerary {
 
 .typeahead .suggestions {
   background-color: white;
-  font-size: 0.8em;
-  position: absolute;
   border: 1px solid black;
   border-top: none;
+  font-size: 0.8em;
   opacity: 0.8;
+  position: absolute;
   width: 100%;
   z-index: 10;
 }
@@ -75,12 +75,12 @@ h1, label, .itinerary {
 }
 
 .itinerary {
-  font-size: calc(1em + 1vh + 1vw);
-  flex-grow: 1;
+  align-items: center;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  font-size: calc(1em + 1vh + 1vw);
   justify-content: center;
-  align-items: center;
 }
 
 @media(min-width: 600px) {
@@ -91,8 +91,8 @@ h1, label, .itinerary {
 
   .typeahead {
     flex-grow: 1;
-    max-width: 600px;
     margin: 10px;
+    max-width: 600px;
   }
 
   .typeahead .suggestions {
