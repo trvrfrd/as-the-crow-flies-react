@@ -20,7 +20,6 @@ complete the airports and should feature all airports in the U.S. only. Bonus: p
 
 - tests!!! oops
 - accessibility!!! oops
-- make it not look bad
 - better focus/tab-ing behavior
 - test on an actual mobile device to see if the suggestions mess with the keyboard
 - actual autocomplete (rather than manually clicking the thing you want) (???)
