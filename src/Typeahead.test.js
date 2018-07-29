@@ -34,6 +34,11 @@ describe('Typeahead', () => {
 
     afterEach(() => wrapper.unmount());
 
+    test('suggestions initially not shown', () => {
+      expect(wrapper.find('.suggestions')).toHaveLength(0);
+      expect(wrapper.find('.suggestion')).toHaveLength(0);
+    });
+
     test('shows suggestion when there is a single match', () => {
       input.simulate('change', { target: { value: 'c' } });
 
@@ -48,6 +53,14 @@ describe('Typeahead', () => {
 
       expect(wrapper.find('.suggestion').first().text()).toBe('apple');
       expect(wrapper.find('.suggestion').last().text()).toBe('banana');
+    });
+
+    test('suggestions no longer shown after empty query', () => {
+      input.simulate('change', { target: { value: 'a' } });
+      input.simulate('change', { target: { value: '' } });
+
+      expect(wrapper.find('.suggestions')).toHaveLength(0);
+      expect(wrapper.find('.suggestion')).toHaveLength(0);
     });
 
     test('maxSuggestions prop limits number of suggestions', () => {
@@ -85,6 +98,15 @@ describe('Typeahead', () => {
       expect(wrapper.find('.suggestion').text()).toBe('CHERRY');
     });
 
+    test('matching text of suggestion is highlighted', () => {
+      input.simulate('change', { target: { value: 'ch' } });
+      // have to call .render() because we use dangerouslySetInnerHTML (?) oops
+      const highlight = wrapper.render().find('.highlight');
+
+      expect(highlight).toHaveLength(1);
+      expect(highlight.text()).toBe('ch');
+    });
+
   });
 
   describe('basic selections', () => {
@@ -104,6 +126,12 @@ describe('Typeahead', () => {
       input = wrapper.find('input');
     });
 
+    test('onSelect prop called with null on input (selection cleared)', () => {
+      input.simulate('change', { target: { value: 'whatever' } });
+
+      expect(onSelect).toHaveBeenCalledWith(null);
+    });
+
     test('onSelect prop called with corresponding source data when clicking a suggestion', () => {
       input.simulate('change', { target: { value: 'c' } });
       const suggestion = wrapper.find('.suggestion');
@@ -121,6 +149,15 @@ describe('Typeahead', () => {
       suggestion.simulate('click');
 
       expect(input.instance().value).toBe('a delicious cherry');
+    });
+
+    test('suggestions no longer shown after making selection', () => {
+      input.simulate('change', { target: { value: 'c' } });
+      const suggestion = wrapper.find('.suggestion');
+      suggestion.simulate('click');
+
+      expect(wrapper.find('.suggestions')).toHaveLength(0);
+      expect(wrapper.find('.suggestion')).toHaveLength(0);
     });
 
   });
