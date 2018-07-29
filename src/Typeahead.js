@@ -73,22 +73,19 @@ export default class Typeahead extends Component {
           />
         </fieldset>
 
-        {
-          this.state.showSuggestions
-            ?
-            <div className="suggestions">
-              {results.map((data, idx) =>
-                <div
-                  className="suggestion"
-                  key={idx}
-                  onClick={() => this.handleSelect(data)}
-                  dangerouslySetInnerHTML={this.highlightQuery(this.props.formatSuggestion(data))}
-                />
-              )}
-            </div>
+        <div className="suggestions">
+          {this.state.showSuggestions
+            ? results.map((data, idx) =>
+              <div
+                className="suggestion"
+                key={idx}
+                onClick={() => this.handleSelect(data)}
+                dangerouslySetInnerHTML={this.highlightQuery(this.props.formatSuggestion(data))}
+              />
+            )
             : null
-        }
-
+          }
+        </div>
       </div>
     )
   }

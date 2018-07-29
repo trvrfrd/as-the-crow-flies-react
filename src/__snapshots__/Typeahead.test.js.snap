@@ -30,7 +30,9 @@ ShallowWrapper {
             value=""
           />
         </fieldset>,
-        null,
+        <div
+          className="suggestions"
+        />,
       ],
       "className": "typeahead",
     },
@@ -99,7 +101,18 @@ ShallowWrapper {
         ],
         "type": "fieldset",
       },
-      null,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": null,
+          "className": "suggestions",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "div",
+      },
     ],
     "type": "div",
   },
@@ -120,7 +133,9 @@ ShallowWrapper {
               value=""
             />
           </fieldset>,
-          null,
+          <div
+            className="suggestions"
+          />,
         ],
         "className": "typeahead",
       },
@@ -189,7 +204,18 @@ ShallowWrapper {
           ],
           "type": "fieldset",
         },
-        null,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": null,
+            "className": "suggestions",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "div",
+        },
       ],
       "type": "div",
     },

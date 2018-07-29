@@ -34,8 +34,7 @@ describe('Typeahead', () => {
 
     afterEach(() => wrapper.unmount());
 
-    test('suggestions initially not shown', () => {
-      expect(wrapper.find('.suggestions')).toHaveLength(0);
+    test('does not initially show suggestions', () => {
       expect(wrapper.find('.suggestion')).toHaveLength(0);
     });
 
@@ -55,11 +54,16 @@ describe('Typeahead', () => {
       expect(wrapper.find('.suggestion').last().text()).toBe('banana');
     });
 
-    test('suggestions no longer shown after empty query', () => {
+    test('shows no suggestions when these is no match', () => {
+      input.simulate('change', { target: { value: 'xyz' } });
+
+      expect(wrapper.find('.suggestion')).toHaveLength(0);
+    });
+
+    test('no longer shows suggestions after empty query', () => {
       input.simulate('change', { target: { value: 'a' } });
       input.simulate('change', { target: { value: '' } });
 
-      expect(wrapper.find('.suggestions')).toHaveLength(0);
       expect(wrapper.find('.suggestion')).toHaveLength(0);
     });
 
@@ -98,7 +102,7 @@ describe('Typeahead', () => {
       expect(wrapper.find('.suggestion').text()).toBe('CHERRY');
     });
 
-    test('matching text of suggestion is highlighted', () => {
+    test('highlights matching text of suggestion', () => {
       input.simulate('change', { target: { value: 'ch' } });
       // have to call .render() because we use dangerouslySetInnerHTML (?) oops
       const highlight = wrapper.render().find('.highlight');
@@ -126,13 +130,13 @@ describe('Typeahead', () => {
       input = wrapper.find('input');
     });
 
-    test('onSelect prop called with null on input (selection cleared)', () => {
+    test('calls onSelect prop with null on input (selection cleared)', () => {
       input.simulate('change', { target: { value: 'whatever' } });
 
       expect(onSelect).toHaveBeenCalledWith(null);
     });
 
-    test('onSelect prop called with corresponding source data when clicking a suggestion', () => {
+    test('calls onSelect prop with correspond ing source data when clicking a suggestion', () => {
       input.simulate('change', { target: { value: 'c' } });
       const suggestion = wrapper.find('.suggestion');
       suggestion.simulate('click');
@@ -140,7 +144,7 @@ describe('Typeahead', () => {
       expect(onSelect).toHaveBeenCalledWith({ text: 'cherry' });
     });
 
-    test('value of input gets updated with formatted suggestion text', () => {
+    test('updates value of input with formatted suggestion text', () => {
       const formatSuggestion = data => `a delicious ${data.text}`;
       wrapper.setProps({ formatSuggestion });
 
@@ -151,12 +155,11 @@ describe('Typeahead', () => {
       expect(input.instance().value).toBe('a delicious cherry');
     });
 
-    test('suggestions no longer shown after making selection', () => {
+    test('no longer shows suggestions after making selection', () => {
       input.simulate('change', { target: { value: 'c' } });
       const suggestion = wrapper.find('.suggestion');
       suggestion.simulate('click');
 
-      expect(wrapper.find('.suggestions')).toHaveLength(0);
       expect(wrapper.find('.suggestion')).toHaveLength(0);
     });
 
