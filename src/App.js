@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 
-import './App.css';
-
 import Typeahead from './Typeahead';
 import { calculateDistance } from './utils';
 import { hot } from 'react-hot-loader';
+
+import './App.css';
 
 class App extends Component {
   state = {
@@ -14,9 +14,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://trvrfrd.github.io/as-the-crow-flies/data/airports.json')
-      .then(res => res.json())
-      .then(json => this.setState({ airports: json }));
+    import('./airports.json')
+      .then(json => this.setState({ airports: json.airports }));
   }
 
   handleSelect = (endpoint, airport) => {
