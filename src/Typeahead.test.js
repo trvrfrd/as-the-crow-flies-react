@@ -68,6 +68,14 @@ describe('Typeahead', () => {
       expect(wrapper.find('.suggestion').text()).toBe('(some other fruit)');
     });
 
+    test('formatSuggestion prop used to format suggestion', () => {
+      const formatSuggestion = data => data.text.toUpperCase();
+      wrapper.setProps({ formatSuggestion });
+      input.simulate('change', { target: { value: 'c' } });
+      expect(wrapper.find('.suggestion')).toHaveLength(1);
+      expect(wrapper.find('.suggestion').text()).toBe('CHERRY');
+    });
+
   });
 
 });
