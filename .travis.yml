@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "node" # latest stable Node.js release
+install:
+  # Travis does this automatically if there's a package-lock.json
+  # but I like to be explicit :)
+  - npm ci # clean install - rm node_modules/ before installing
+cache:
+  directories:
+    # keep the npm cache around to speed up installs
+    - "$HOME/.npm"
