@@ -106,5 +106,6 @@ h1, label, .itinerary {
 
   .suggestions {
     max-width: 600px;
+    width: calc(50% - 20px);
   }
 }
