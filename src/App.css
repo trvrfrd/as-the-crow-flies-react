@@ -59,8 +59,6 @@ h1, label, .itinerary {
 
 .suggestions {
   background-color: white;
-  border: 1px solid black;
-  border-top: none;
   font-size: 0.8em;
   opacity: 0.8;
   position: absolute;
@@ -70,11 +68,13 @@ h1, label, .itinerary {
 
 .suggestion {
   border-bottom: 1px dashed black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
   padding: 5px;
 }
 
 .suggestion:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid black;
 }
 
 .highlight {
