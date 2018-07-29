@@ -10,13 +10,13 @@ describe('Typeahead', () => {
   });
 
   describe('basic suggestions', () => {
-    const formatFunction = data => data.text;
     const source = [
       { text: 'apple' },
       { text: 'banana' },
       { text: 'cherry' }
     ];
-    const onSelect = () => { };
+    const formatFunction = data => data.text;
+    const onSelect = function noop() {};
     let wrapper;
     let input;
 
@@ -42,14 +42,18 @@ describe('Typeahead', () => {
 
     test('shows suggestions when there are multiple matches', () => {
       input.simulate('change', { target: { value: 'a' } });
+
       expect(wrapper.find('.suggestion')).toHaveLength(2);
+
       expect(wrapper.find('.suggestion').first().text()).toBe('apple');
       expect(wrapper.find('.suggestion').last().text()).toBe('banana');
     });
 
     test('maxSuggestions prop limits number of suggestions', () => {
       wrapper.setProps({ maxSuggestions: 1 });
+
       input.simulate('change', { target: { value: 'a' } });
+
       expect(wrapper.find('.suggestion')).toHaveLength(1);
       expect(wrapper.find('.suggestion').text()).toBe('apple');
     });
@@ -63,7 +67,9 @@ describe('Typeahead', () => {
     test('RegExp-unsafe character input matches correctly', () => {
       const newSource = source.concat({ text: '(some other fruit)' });
       wrapper.setProps({ source: newSource });
+
       input.simulate('change', { target: { value: '(' } });
+
       expect(wrapper.find('.suggestion')).toHaveLength(1);
       expect(wrapper.find('.suggestion').text()).toBe('(some other fruit)');
     });
@@ -71,7 +77,9 @@ describe('Typeahead', () => {
     test('formatSuggestion prop used to format suggestion', () => {
       const formatSuggestion = data => data.text.toUpperCase();
       wrapper.setProps({ formatSuggestion });
+
       input.simulate('change', { target: { value: 'c' } });
+
       expect(wrapper.find('.suggestion')).toHaveLength(1);
       expect(wrapper.find('.suggestion').text()).toBe('CHERRY');
     });
