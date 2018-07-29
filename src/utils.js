@@ -1,4 +1,11 @@
-export default function calculateDistance(d1, d2) {
+// escape dynamic RegExp so user input doesn't blow it up
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+export function escapeRegExp(string) {
+  // $& means the whole matched string
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+export function calculateDistance(d1, d2) {
   return getDistanceFromLatLonInKm(d1.lat, d1.lon, d2.lat, d2.lon);
 }
 

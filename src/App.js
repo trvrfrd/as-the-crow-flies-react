@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import './App.css';
 
 import Typeahead from './Typeahead';
-import calculateDistance from './calculateDistance';
+import { calculateDistance } from './utils';
 import { hot } from 'react-hot-loader';
 
 class App extends Component {
@@ -67,7 +67,7 @@ class App extends Component {
 }
 
 const Itinerary = ({ origin, destination}) => {
-  const distance =  calculateDistance(origin, destination).toFixed(0);
+  const distance = calculateDistance(origin, destination).toFixed(0);
   return (
     <div className="itinerary">
       <p>

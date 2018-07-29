@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-
-// escape dynamic RegExp so user input doesn't blow it up
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
-function escapeRegExp(string) {
-  // $& means the whole matched string
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
+import { escapeRegExp } from './utils';
 
 export default class Typeahead extends Component {
   state = {
