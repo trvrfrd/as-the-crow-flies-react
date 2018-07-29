@@ -54,6 +54,20 @@ describe('Typeahead', () => {
       expect(wrapper.find('.suggestion').text()).toBe('apple');
     });
 
+    test('RegExp-unsafe characters do not cause an error', () => {
+      expect(
+        () => input.simulate('change', { target: { value: '.*+?^${}()|[]\\' } })
+      ).not.toThrow();
+    });
+
+    test('RegExp-unsafe character input matches correctly', () => {
+      const newSource = source.concat({ text: '(some other fruit)' });
+      wrapper.setProps({ source: newSource });
+      input.simulate('change', { target: { value: '(' } });
+      expect(wrapper.find('.suggestion')).toHaveLength(1);
+      expect(wrapper.find('.suggestion').text()).toBe('(some other fruit)');
+    });
+
   });
 
 });
