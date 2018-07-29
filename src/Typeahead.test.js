@@ -4,19 +4,20 @@ import Typeahead from './Typeahead';
 
 describe('Typeahead', () => {
 
+  const source = [
+    { text: 'apple' },
+    { text: 'banana' },
+    { text: 'cherry' }
+  ];
+  const formatFunction = data => data.text;
+  const onSelect = function noop() { };
+
   test('basic rendering snapshot', () => {
     const wrapper = shallow(<Typeahead />);
     expect(wrapper).toMatchSnapshot();
   });
 
   describe('basic suggestions', () => {
-    const source = [
-      { text: 'apple' },
-      { text: 'banana' },
-      { text: 'cherry' }
-    ];
-    const formatFunction = data => data.text;
-    const onSelect = function noop() {};
     let wrapper;
     let input;
 
@@ -82,6 +83,44 @@ describe('Typeahead', () => {
 
       expect(wrapper.find('.suggestion')).toHaveLength(1);
       expect(wrapper.find('.suggestion').text()).toBe('CHERRY');
+    });
+
+  });
+
+  describe('basic selections', () => {
+    let onSelect;
+    let wrapper;
+    let input;
+
+    beforeEach(() => {
+      onSelect = jest.fn();
+      wrapper = mount(
+        <Typeahead
+          formatSuggestion={formatFunction}
+          source={source}
+          onSelect={onSelect}
+        />
+      );
+      input = wrapper.find('input');
+    });
+
+    test('onSelect prop called with corresponding source data when clicking a suggestion', () => {
+      input.simulate('change', { target: { value: 'c' } });
+      const suggestion = wrapper.find('.suggestion');
+      suggestion.simulate('click');
+
+      expect(onSelect).toHaveBeenCalledWith({ text: 'cherry' });
+    });
+
+    test('value of input gets updated with formatted suggestion text', () => {
+      const formatSuggestion = data => `a delicious ${data.text}`;
+      wrapper.setProps({ formatSuggestion });
+
+      input.simulate('change', { target: { value: 'c' } });
+      const suggestion = wrapper.find('.suggestion');
+      suggestion.simulate('click');
+
+      expect(input.instance().value).toBe('a delicious cherry');
     });
 
   });
