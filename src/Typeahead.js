@@ -51,7 +51,7 @@ export default class Typeahead extends Component {
     const regexp = new RegExp(escapeRegExp(query), 'i');
     return this.props.source.filter(data =>
       Object.values(data).some(attr => regexp.test(attr))
-    ).slice(0, this.props.maxSuggestions || 10);
+    ).slice(0, this.props.maxSuggestions);
   }
 
   highlightQuery = str => {
@@ -99,3 +99,7 @@ export default class Typeahead extends Component {
     )
   }
 }
+
+Typeahead.defaultProps = {
+  maxSuggestions: 10
+};
