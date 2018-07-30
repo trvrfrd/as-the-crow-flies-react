@@ -74,13 +74,25 @@ const Itinerary = ({ origin, destination}) => {
   return (
     <div className="itinerary">
       <p>
-        {`${origin.iata} ✈ ${destination.iata}`}
+        {`${origin.iata} ✈ ${destination.iata}: ${distance} nautical miles`}
       </p>
-      <p>
-        {`${distance} nautical miles`}
-      </p>
+      <iframe
+        src={mapsEmbedURL(origin, destination)}
+      />
     </div>
   )
+}
+
+function mapsEmbedURL(origin, destination) {
+  return 'https://www.google.com/maps/embed/v1/directions'
+    + '?key=AIzaSyBz_m7FJ6G821bn-cmcLlmLzBaVc-xQquM'
+    + `&origin=${encodeLatLon(origin)}`
+    + `&destination=${encodeLatLon(destination)}`
+    + '&mode=flying'
+}
+
+function encodeLatLon(place) {
+  return encodeURIComponent(`${place.lat},${place.lon}`);
 }
 
 export default hot(module)(App);

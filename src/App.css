@@ -4,6 +4,13 @@
   padding: 0;
 }
 
+iframe {
+  border: none;
+  flex: 1;
+  max-width: 1220px;
+  width: 100%;
+}
+
 body {
   background-image: url('ross-parmly-25230-unsplash_2000_optim.jpg');
   background-position: right;
@@ -22,8 +29,10 @@ body {
 header {
   align-items: center;
   display: flex;
-  height: 100px;
+  flex-basis: 80px;
+  flex-shrink: 1;
   justify-content: center;
+  margin-bottom: -10px;
 }
 
 main {
@@ -33,7 +42,7 @@ main {
 }
 
 h1 {
-  font-size: calc(1.5em + 1vh + 1vw);
+  font-size: calc(1.5em + 1.5vw);
 }
 
 h1, label, .itinerary {
@@ -41,9 +50,12 @@ h1, label, .itinerary {
   text-shadow: black 1px 1px 3px;
 }
 
+.typeahead {
+  margin-top: 10px;
+}
+
 .typeahead fieldset {
   border: none;
-  margin-top: 10px;
 }
 
 .typeahead input {
@@ -88,11 +100,20 @@ h1, label, .itinerary {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  font-size: calc(1em + 1vh + 1vw);
   justify-content: center;
+  text-align: center;
+}
+
+.itinerary p {
+  font-size: calc(1em + 1vw);
+  margin: 5px;
 }
 
 @media(min-width: 600px) {
+  header {
+    flex-basis: 100px;
+  }
+
   .typeaheads {
     display: flex;
     justify-content: center;
@@ -107,5 +128,9 @@ h1, label, .itinerary {
   .suggestions {
     max-width: 600px;
     width: calc(50% - 20px);
+  }
+
+  .itinerary p {
+    margin: 15px;
   }
 }
