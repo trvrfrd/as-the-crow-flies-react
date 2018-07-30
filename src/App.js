@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    import('./airports.json')
+    this.props.loadAirports()
       .then(json => this.setState({ airports: json.airports }));
   }
 
@@ -63,6 +63,10 @@ class App extends Component {
       </Fragment>
     );
   }
+}
+
+App.defaultProps = {
+  loadAirports: () => import('./airports.json')
 }
 
 const Itinerary = ({ origin, destination}) => {
