@@ -31,7 +31,7 @@ describe('App', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('shows itinerary when both selections made', async () => {
+  test('shows itinerary with expected distance when both selections made', async () => {
     const wrapper = await mount(<App loadAirports={loadAirports} />);
 
     wrapper.find('#from').simulate('change', { target: { value: 'jfk' } });
@@ -40,5 +40,27 @@ describe('App', () => {
     wrapper.find('.suggestion').first().simulate('click');
 
     expect(wrapper.find('.itinerary')).toHaveLength(1);
-  })
+    expect(wrapper.find('.itinerary').text()).toMatch('3974 nautical miles');
+  });
+
+  test('does not show itinerary when only one selection made', async () => {
+    const wrapper = await mount(<App loadAirports={loadAirports} />);
+
+    wrapper.find('#from').simulate('change', { target: { value: 'jfk' } });
+    wrapper.find('.suggestion').first().simulate('click');
+
+    expect(wrapper.find('.itinerary')).toHaveLength(0);
+  });
+
+  test('hides itinerary when changing a query after making both selections', async () => {
+    const wrapper = await mount(<App loadAirports={loadAirports} />);
+
+    wrapper.find('#from').simulate('change', { target: { value: 'jfk' } });
+    wrapper.find('.suggestion').first().simulate('click');
+    wrapper.find('#to').simulate('change', { target: { value: 'lax' } });
+    wrapper.find('.suggestion').first().simulate('click');
+    wrapper.find('#from').simulate('change', { target: { value: 'jfk' } });
+
+    expect(wrapper.find('.itinerary')).toHaveLength(0);
+  });
 });
