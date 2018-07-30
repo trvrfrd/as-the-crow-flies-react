@@ -130,6 +130,8 @@ describe('Typeahead', () => {
       input = wrapper.find('input');
     });
 
+    afterEach(() => wrapper.unmount());
+
     test('calls onSelect prop with null on input (selection cleared)', () => {
       input.simulate('change', { target: { value: 'whatever' } });
 
