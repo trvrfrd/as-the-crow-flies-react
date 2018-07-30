@@ -78,6 +78,7 @@ const Itinerary = ({ origin, destination}) => {
       </p>
       <iframe
         src={mapsEmbedURL(origin, destination)}
+        referrerpolicy="origin"
       />
     </div>
   )
