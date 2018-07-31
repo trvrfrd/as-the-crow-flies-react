@@ -32,7 +32,7 @@ describe('App', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('shows itinerary with expected distance when both selections made', async () => {
+  it('shows itinerary with expected distance when both selections made', async () => {
     const wrapper = await mount(<App loadAirports={loadAirports} />);
 
     wrapper.find('#from').simulate('change', { target: { value: 'jfk' } });
@@ -44,7 +44,7 @@ describe('App', () => {
     expect(wrapper.find('.itinerary').text()).toMatch('3974 nautical miles');
   });
 
-  test('does not show itinerary when only one selection made', async () => {
+  it('does not show itinerary when only one selection made', async () => {
     const wrapper = await mount(<App loadAirports={loadAirports} />);
 
     wrapper.find('#from').simulate('change', { target: { value: 'jfk' } });
@@ -53,7 +53,7 @@ describe('App', () => {
     expect(wrapper.find('.itinerary')).toHaveLength(0);
   });
 
-  test('hides itinerary when changing a query after making both selections', async () => {
+  it('hides itinerary when changing a query after making both selections', async () => {
     const wrapper = await mount(<App loadAirports={loadAirports} />);
 
     wrapper.find('#from').simulate('change', { target: { value: 'jfk' } });
