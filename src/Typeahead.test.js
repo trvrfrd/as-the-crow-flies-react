@@ -139,7 +139,7 @@ describe('Typeahead', () => {
       expect(onSelect).toHaveBeenCalledWith(null);
     });
 
-    it('calls onSelect prop with correspond ing source data when clicking a suggestion', () => {
+    it('calls onSelect prop with correct data when clicking a suggestion', () => {
       input.simulate('change', { target: { value: 'c' } });
       const suggestion = wrapper.find('.suggestion');
       suggestion.simulate('click');
