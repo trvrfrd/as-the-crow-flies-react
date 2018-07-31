@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { escapeRegExp } from './utils';
 
 export default class Typeahead extends Component {
+  static defaultProps = {
+    maxSuggestions: 10
+  }
+
   state = {
     query: '',
     results: [],
@@ -90,7 +94,3 @@ export default class Typeahead extends Component {
     )
   }
 }
-
-Typeahead.defaultProps = {
-  maxSuggestions: 10
-};

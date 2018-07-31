@@ -7,6 +7,10 @@ import { hot } from 'react-hot-loader';
 import './App.css';
 
 class App extends Component {
+  static defaultProps = {
+    loadAirports: () => import('./airports.json')
+  }
+
   state = {
     from: null,
     to: null,
@@ -63,10 +67,6 @@ class App extends Component {
       </Fragment>
     );
   }
-}
-
-App.defaultProps = {
-  loadAirports: () => import('./airports.json')
 }
 
 const Itinerary = ({ origin, destination}) => {
