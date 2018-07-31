@@ -26,6 +26,7 @@ const airportData = {
 const loadAirports = () => Promise.resolve(airportData);
 
 describe('App', () => {
+
   test('basic rendering snapshot', () => {
     const wrapper = shallow(<App />);
     expect(wrapper).toMatchSnapshot();
@@ -63,4 +64,5 @@ describe('App', () => {
 
     expect(wrapper.find('.itinerary')).toHaveLength(0);
   });
+
 });

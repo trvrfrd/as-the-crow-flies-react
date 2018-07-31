@@ -2,22 +2,23 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Typeahead from './Typeahead';
 
-describe('Typeahead', () => {
+const source = [
+  { text: 'apple' },
+  { text: 'banana' },
+  { text: 'cherry' }
+];
 
-  const source = [
-    { text: 'apple' },
-    { text: 'banana' },
-    { text: 'cherry' }
-  ];
-  const formatFunction = data => data.text;
-  const onSelect = function noop() { };
+const formatFunction = data => data.text;
+const onSelect = function noop() { };
+
+describe('Typeahead', () => {
 
   test('basic rendering snapshot', () => {
     const wrapper = shallow(<Typeahead />);
     expect(wrapper).toMatchSnapshot();
   });
 
-  describe('basic suggestions', () => {
+  describe('suggestions', () => {
     let wrapper;
     let input;
 
@@ -113,7 +114,7 @@ describe('Typeahead', () => {
 
   });
 
-  describe('basic selections', () => {
+  describe('selections', () => {
     let onSelect;
     let wrapper;
     let input;
