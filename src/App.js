@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
+import { hot } from 'react-hot-loader';
 
 import Typeahead from './Typeahead';
 import { calculateDistance } from './utils';
-import { hot } from 'react-hot-loader';
 
 import './App.css';
 
