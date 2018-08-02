@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import TestRenderer from 'react-test-renderer';
 import Typeahead from './Typeahead';
 
@@ -17,6 +17,27 @@ describe('Typeahead', () => {
   test('basic rendering snapshot', () => {
     const wrapper = TestRenderer.create(<Typeahead />);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('shows label text based on name prop', () => {
+    const name = "whatever";
+    const wrapper = shallow(<Typeahead name={name} />);
+
+    expect(wrapper.find('label').text()).toMatch(name);
+  });
+
+  it('sets input name attribute based on name prop', () => {
+    const name = 'whatever';
+    const wrapper = shallow(<Typeahead name={name} />);
+
+    expect(wrapper.find(`input[name="${name}"]`)).toHaveLength(1);
+  });
+
+  it('takes a prop for input placeholder text', () => {
+    const text = 'type things here';
+    const wrapper = mount(<Typeahead placeholder={text} />);
+
+    expect(wrapper.find('input').instance().placeholder).toBe(text);
   });
 
   describe('suggestions', () => {
