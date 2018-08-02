@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import TestRenderer from 'react-test-renderer';
 import Typeahead from './Typeahead';
 
 const source = [
@@ -14,7 +15,7 @@ const onSelect = function noop() { };
 describe('Typeahead', () => {
 
   test('basic rendering snapshot', () => {
-    const wrapper = shallow(<Typeahead />);
+    const wrapper = TestRenderer.create(<Typeahead />);
     expect(wrapper).toMatchSnapshot();
   });
 

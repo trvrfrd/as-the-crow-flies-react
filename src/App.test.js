@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import TestRenderer from 'react-test-renderer';
 import App from './App';
 
 const airportData = {
@@ -28,7 +29,7 @@ const loadAirports = () => Promise.resolve(airportData);
 describe('App', () => {
 
   test('basic rendering snapshot', () => {
-    const wrapper = shallow(<App />);
+    const wrapper = TestRenderer.create(<App />);
     expect(wrapper).toMatchSnapshot();
   });
 
