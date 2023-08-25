@@ -39,7 +39,7 @@
     "enzyme-adapter-react-16": "^1.15.7",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
-    "jest": "^29.6.3",
+    "jest": "^29.6.4",
     "react-test-renderer": "^16.14.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.88.2",
